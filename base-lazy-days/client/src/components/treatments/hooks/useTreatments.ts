@@ -11,13 +11,7 @@ async function getTreatments(): Promise<Treatment[]> {
 }
 
 export function useTreatments(): Treatment[] {
-  const { data = [] } = useQuery([queryKeys.treatments], getTreatments, {
-    staleTime: 600000, // 10 minutes
-    cacheTime: 900000, // 15 minutes
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  });
+  const { data = [] } = useQuery([queryKeys.treatments], getTreatments);
   return data;
 }
 
