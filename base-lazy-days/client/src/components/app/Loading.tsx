@@ -1,5 +1,5 @@
 import { Spinner, Text } from '@chakra-ui/react';
-import { Query, useIsFetching } from '@tanstack/react-query';
+import { Query, useIsFetching, useIsMutating } from '@tanstack/react-query';
 import { ReactElement } from 'react';
 
 export function Loading(): ReactElement {
@@ -7,8 +7,8 @@ export function Loading(): ReactElement {
   const isFetching = useIsFetching({
     predicate: (query: Query) => query.state.status === 'loading',
   }); // for now, just don't display
-
-  const display = isFetching ? 'inherit' : 'none';
+  const isMutating = useIsMutating();
+  const display = isFetching || isMutating ? 'inherit' : 'none';
 
   return (
     <Spinner
